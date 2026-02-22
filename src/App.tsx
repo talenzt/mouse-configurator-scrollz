@@ -26,13 +26,13 @@ function App() {
     }
   };
 
-  // Detectamos si es móvil para ajustar la cámara inicialmente
+  // Detectamos si es móvil para aplicar los desplazamientos de cámara
   const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   return (
     <div className="w-screen h-screen bg-[#050505] text-white font-sans overflow-hidden flex flex-col md:block">
       
-      {/* Navbar: Ajustada para no estorbar en pantallas pequeñas */}
+      {/* Navbar */}
       <nav className="absolute top-0 w-full p-4 md:p-6 flex justify-between items-center z-20 backdrop-blur-md bg-black/10">
         <div className="flex flex-col">
           <span className="text-[8px] md:text-[10px] uppercase tracking-[0.4em] text-blue-500 font-bold underline underline-offset-8 decoration-blue-500/30">Proyecto Tesis</span>
@@ -40,14 +40,14 @@ function App() {
         </div>
       </nav>
 
-      {/* Escena 3D: Ocupa todo el fondo */}
+      {/* Escena 3D */}
       <div className="absolute inset-0 z-0">
         <Canvas 
           shadows 
-          // Ajuste de cámara: En móvil sube el objetivo (y: 1) para que el mouse no quede tapado por el menú
+          // Ajuste de cámara: Elevamos la posición inicial en móvil (y: 1.5) y ampliamos el FOV
           camera={{ 
-            position: [0, isMobile ? 1.2 : 0.5, 5], 
-            fov: isMobile ? 45 : 35 
+            position: [0, isMobile ? 1.5 : 0.5, 5], 
+            fov: isMobile ? 48 : 35 
           }}
           gl={{ preserveDrawingBuffer: true, antialias: true }}
         >
@@ -62,8 +62,9 @@ function App() {
             dampingFactor={0.05} 
             minDistance={3.5}
             maxDistance={8}
-            // En móvil evitamos que el usuario haga pan (mover con 2 dedos) para no romper la UX
-            enablePan={!isMobile}
+            // FIX MÓVIL: Subimos el punto donde mira la cámara (target) para centrar el mouse arriba
+            target={[0, isMobile ? 0.8 : 0, 0]}
+            enablePan={false}
           />
 
           <Suspense fallback={null}>
@@ -74,7 +75,6 @@ function App() {
       </div>
 
       {/* Panel de Configuración Responsivo */}
-      {/* Móvil: Abajo, 45% de altura | Escritorio: Lateral derecho fijo */}
       <div className="absolute bottom-0 md:right-6 md:top-24 md:bottom-6 w-full md:w-80 h-[45vh] md:h-auto bg-black/60 md:bg-black/40 backdrop-blur-2xl border-t md:border border-white/10 rounded-t-3xl md:rounded-3xl p-6 z-10 flex flex-col shadow-2xl overflow-y-auto no-scrollbar transition-all duration-500">
         
         <h2 className="text-[10px] md:text-xs font-semibold mb-4 md:mb-6 border-b border-white/10 pb-4 tracking-widest uppercase text-gray-400">Atelier de Diseño</h2>
@@ -118,7 +118,6 @@ function App() {
           )}
         </div>
 
-        {/* Botones de acción: Se mantienen al final del panel */}
         <div className="mt-6 md:mt-8 pt-4 md:pt-6 border-t border-white/10 space-y-3">
           <div className="flex gap-2">
             <button onClick={() => controlsRef.current?.reset()} className="flex-1 bg-white/5 hover:bg-white/10 border border-white/10 text-[8px] md:text-[9px] uppercase tracking-widest py-2 rounded-lg">Reset</button>
