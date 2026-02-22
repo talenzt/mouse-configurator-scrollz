@@ -1,6 +1,7 @@
 # 🖱️ ScrollZ Studio | 3D Configurator
 
 ![Prototipo de tesis](public/mouse.png)
+[🚀 Probar Configurador en Vivo](https://mouse-configurator-scrollz.vercel.app/)
 
 ## 🚀 Sobre el Proyecto
 Este configurador inmersivo permite a los usuarios personalizar periféricos de alta gama en un entorno 3D tiempo real. 
