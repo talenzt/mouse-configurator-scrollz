@@ -46,8 +46,8 @@ function App() {
           shadows 
           // Ajuste de cámara: Elevamos la posición inicial en móvil (y: 1.5) y ampliamos el FOV
           camera={{ 
-            position: [0, isMobile ? 1.5 : 0.5, 5], 
-            fov: isMobile ? 48 : 35 
+            position: [0, isMobile ? 4 : 0.5, isMobile ? 4 : 6], 
+            fov: isMobile ? 50 : 35 
           }}
           gl={{ preserveDrawingBuffer: true, antialias: true }}
         >
@@ -63,7 +63,7 @@ function App() {
             minDistance={3.5}
             maxDistance={8}
             // FIX MÓVIL: Subimos el punto donde mira la cámara (target) para centrar el mouse arriba
-            target={[0, isMobile ? 0.8 : 0, 0]}
+            target={[0, isMobile ? -1.5 : 0, 0]}
             enablePan={false}
           />
 
