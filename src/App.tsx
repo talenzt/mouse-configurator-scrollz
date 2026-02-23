@@ -77,7 +77,7 @@ function App() {
       {/* Panel de Configuración Responsivo */}
       <div className="absolute bottom-0 md:right-6 md:top-24 md:bottom-6 w-full md:w-80 h-[45vh] md:h-auto bg-black/60 md:bg-black/40 backdrop-blur-2xl border-t md:border border-white/10 rounded-t-3xl md:rounded-3xl p-6 z-10 flex flex-col shadow-2xl overflow-y-auto no-scrollbar transition-all duration-500">
         
-        <h2 className="text-[10px] md:text-xs font-semibold mb-4 md:mb-6 border-b border-white/10 pb-4 tracking-widest uppercase text-gray-400">Atelier de Diseño</h2>
+        <h2 className="text-[10px] md:text-xs font-semibold mb-4 md:mb-6 border-b border-white/10 pb-4 tracking-widest uppercase text-gray-400">Diseño</h2>
         
         <div className="flex flex-wrap gap-2 mb-6 md:mb-8">
           {['carcasa', 'base', 'detalles'].map((tab) => (
